@@ -7,6 +7,7 @@ class Card:
         self.suit = suit
         self.value = value
 
+
 class Deck:
     def __init__(self):
         self.cards = [
