@@ -2,6 +2,7 @@ class Player:
     def __init__(self):
         self.hand = []
         self.playing = True
+        self.wins = 0
 
     def get_hand(self):
         return self.hand
@@ -17,9 +18,6 @@ class Player:
 
     def hit(self, card):
         self.hand.append(card)
-
-    def stop(self):
-        self.playing = False
 
     def print_hand(self):
         for card in self.hand:
