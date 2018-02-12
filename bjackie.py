@@ -3,8 +3,9 @@ from app.game import Game
 
 def main():
     num_rounds = 5
+    num_decks = 6
 
-    game = Game()
+    game = Game(num_decks)
     for k in range(0, num_rounds):
         game.round()
 

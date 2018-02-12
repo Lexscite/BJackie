@@ -5,15 +5,18 @@ from app.deck import Deck
 class Game:
     round_counter = 0
 
-    def __init__(self):
+    def __init__(self, num_decks):
         self.deck = Deck()
+
+        std_deck = list(self.deck.cards)
+        for i in range(1, num_decks):
+            self.deck.cards += std_deck
+
         self.player = Player()
         self.dealer = Player()
-        return
 
     def round(self):
         input("Press Enter to start...")
-
         self.round_counter += 1
         print("Round {} started".format(self.round_counter))
 
@@ -31,6 +34,11 @@ class Game:
                 print("You have too much :(")
                 self.player.playing = False
                 break
+            if self.player.calc_hand() == 21:
+                print("You have 21!")
+                self.player.playing = False
+                break
+
             choice = input("Want to [hit] or [stop]?: ")
             while choice not in {"hit", "stop"}:
                 choice = input("Wrong command. Want to [hit] or [stop]?: ")
@@ -60,6 +68,9 @@ class Game:
 
         print("Current win rate is: {:.1%}".format(self.player.wins / self.round_counter))
 
+        self.reset()
+
+    def reset(self):
         self.player.playing = True
         self.dealer.playing = True
         self.player.reset_hand()
