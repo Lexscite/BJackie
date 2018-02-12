@@ -16,8 +16,9 @@ class Game:
         self.dealer = Player()
 
     def round(self):
-        input("Press Enter to start...")
         self.round_counter += 1
+        if self.round_counter > 1:
+            input("Press Enter to start next round...")
         print("Round {} started".format(self.round_counter))
 
         if not self.deck.get_cards():
@@ -39,9 +40,9 @@ class Game:
                 self.player.playing = False
                 break
 
-            choice = input("Want to [hit] or [stop]?: ")
+            choice = input("Want to [hit] or [stop]? ")
             while choice not in {"hit", "stop"}:
-                choice = input("Wrong command. Want to [hit] or [stop]?: ")
+                choice = input("Wrong command. Want to [hit] or [stop]? ")
             if choice == "hit":
                 self.player.hit(self.deck.deal())
             if choice == "stop":
@@ -66,7 +67,7 @@ class Game:
             self.dealer.wins += 1
             print("Push")
 
-        print("Current win rate is: {:.1%}".format(self.player.wins / self.round_counter))
+        print("Current win rate is: {:.1%}\n".format(self.player.wins / self.round_counter))
 
         self.reset()
 
