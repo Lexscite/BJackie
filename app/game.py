@@ -15,7 +15,7 @@ class Game:
         input("Press Enter to start...")
 
         self.round_counter += 1
-        print("\nRound {} started".format(self.round_counter))
+        print("Round {} started".format(self.round_counter))
 
         if not self.deck.get_cards():
             self.deck = Deck()
@@ -72,7 +72,7 @@ class Game:
         print("Dealer's hand is:")
         self.dealer.print_hand()
 
-        print("Actual score is: {}:{}".format(self.player.calc_hand(), self.dealer.calc_hand()))
+        print("Actual score is: {}:{}\n".format(self.player.calc_hand(), self.dealer.calc_hand()))
 
     def get_winner(self):
         if (self.player.calc_hand() > self.dealer.calc_hand() or self.dealer.calc_hand() > 21)\

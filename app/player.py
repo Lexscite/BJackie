@@ -12,8 +12,24 @@ class Player:
 
     def calc_hand(self):
         result = 0
-        for card in self.hand:
+
+        hand = list(self.hand)
+        aces = []
+
+        for card in hand:
+            if card.name == "A":
+                aces.append(card)
+                hand.remove(card)
+
+        for card in hand:
             result += card.value
+
+        for ace in aces:
+            if result > 10:
+                result += ace.value
+            else:
+                result += ace.value + 10
+
         return result
 
     def hit(self, card):
